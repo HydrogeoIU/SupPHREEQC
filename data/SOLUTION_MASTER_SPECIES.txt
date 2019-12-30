@@ -1,0 +1,229 @@
+# 1. SOLUTION_MASTER_SPECIES data block, with extra element valence value marked with "::valence:".
+# 2. Element valence value marked with "::valence:" must be added for the element name without "()" at the end of the corresponding line.
+# 3. Name of species must be the same as that in SUPCRT database.
+# 4. O2,aq must be secondary master species. It will be associated with e- by reaction "2 H2O = O2,aq + 4 H+ + 4 e-". This reaction implies that H2O, H+, and e- should be primary master species.
+
+
+# element, species,     alk,    gfw_formula,    element_gfw,    element valence
+	
+Acetate  HAcetate,aq    0.0     Acetate         59.		::valence: -1 
+Ag	 Ag+		0.0	Ag		107.8682	::valence: 1                   
+Ag(1)	 Ag+		0	Ag                                                            
+Ag(2)	 Ag+2   	0	Ag                                                            
+Al       Al+3           0.0     Al              26.9815		::valence: 3	              
+Alkalinity HCO3-        1.0     Ca0.5(CO3)0.5   50.05		::valence: 9999                
+As	 H2AsO4-	0.0	As		74.9216		::valence: 5                   
+As(+3)	 H2AsO3-	0.0	As					                      
+As(+5)	 H2AsO4-	0.0	As                                                            
+Au	 Au+		0.0	Au		196.9665	::valence: 1                   
+Au(+1)	 Au+		0.0	Au                                                            
+Au(+3)	 Au+3		0.0	Au                                                            
+B        B(OH)3,aq      0.0     B               10.811		::valence: 3                   
+Ba       Ba+2           0.0     Ba              137.3270	::valence: 2                   
+Be	 Be+2		0.0	Be		9.0122		::valence: 2                   
+Bi       Bi+3           0.0     Bi              208.9804	::valence: 3                   
+Br       Br-            0.0     Br              79.904		::valence: -1                  
+Br(-0.3) Br3- 		0	Br                                                            
+Br(-1)	 Br-		0	Br                                                            
+Br(1)	 BrO-		0	Br                                                            
+Br(5)	 BrO3-		0	Br                                                            
+Br(7)	 BrO4-		0	Br                                                            
+C        HCO3-          1.0     HCO3            12.0110		::valence: 4      
+C(-4)	 CH4,aq		0.0	CH4             
+C(+2)	 CO,aq		0	C                                                             
+C(+4)    HCO3-          1.0     HCO3                                                          
+Ca       Ca+2           0.0     Ca              40.078		::valence: 2                   
+Cd       Cd+2           0.0     Cd              112.411		::valence: 2                   
+Ce	 Ce+3		0.0	Ce		140.115		::valence: 3                   
+Ce(+2)	 Ce+2		0.0	Ce                                                            
+Ce(+3)	 Ce+3		0.0	Ce                                                            
+Ce(+4)	 Ce+4		0.0	Ce                                                            
+Cl       Cl-            0.0     Cl              35.4527		::valence: -1                  
+Cl(-1)	 Cl-		0	Cl                                                            
+Cl(1)	 ClO-		0	Cl                                                            
+Cl(3)	 ClO2-		0	Cl                                                            
+Cl(5)	 ClO3-		0	Cl                                                            
+Cl(7)	 ClO4-		0	Cl                                                            
+Co	 Co+2		0.0	Co		58.9332		::valence: 2                   
+Co(+2)	 Co+2		0.0	Co                                                            
+Co(+3)	 Co+3		0.0	Co                                                            
+Cr	 CrO4-2		0.0	CrO4-2  	51.9961		::valence: 6                   
+Cr(+2)	 Cr+2		0.0	Cr                                                            
+Cr(+3)	 Cr+3		0.0	Cr                                                            
+Cr(+6)	 CrO4-2		0.0	Cr                                                            
+Cs	 Cs+		0.0	Cs		132.9054	::valence: 1                   
+Cu       Cu+2           0.0     Cu              63.546		::valence: 2                   
+Cu(+1)   Cu+            0.0     Cu                                                            
+Cu(+2)   Cu+2           0.0     Cu                                                            
+Dy	 Dy+3		0.0	Dy		162.50		::valence: 3                   
+Dy(+2)	 Dy+2		0.0	Dy                                                            
+Dy(+3)	 Dy+3		0.0	Dy                                                            
+Dy(+4)	 Dy+4		0.0	Dy					                      
+E        e-             0.0     0.0             0.0		::valence: -1                  
+Er	 Er+3		0.0	Er		167.26		::valence: 3                   
+Er(+2)	 Er+2		0.0	Er                                                            
+Er(+3)	 Er+3		0.0	Er                                                            
+Er(+4)	 Er+4		0.0	Er					                      
+Eu	 Eu+3		0.0	Eu		151.965		::valence: 3                   
+Eu(+2)	 Eu+2		0.0	Eu                                                            
+Eu(+3)	 Eu+3		0.0	Eu                                                            
+Eu(+4)	 Eu+4		0.0	Eu					                      
+F        F-             0.0     F               18.9984		::valence: -1                  
+Fe       Fe+2           0.0     Fe              55.847		::valence: 2                   
+Fe(+2)   Fe+2           0.0     Fe                                                            
+Fe(+3)   Fe+3           -2.0    Fe                                                            
+Fr	 Fr+		0.0	Fr		223.0197	::valence: 1                   
+Ga	 Ga+3		0.0	Ga		69.723		::valence: 3                   
+Gd	 Gd+3		0.0	Gd		157.25		::valence: 3                   
+Gd(+2)	 Gd+2		0.0	Gd                                                            
+Gd(+3)	 Gd+3		0.0	Gd                                                            
+Gd(+4)	 Gd+4		0.0	Gd					                      
+H        H+             -1.     H               1.0079		::valence: 1                   
+H(0)     H2,aq          0.0     H                                                             
+H(+1)    H+             -1.     0.0                                                           
+He	 He,aq		0.0	He		4.0026		::valence: 0                   
+Hf	 Hf+4		0.0	Hf		178.49		::valence: 4                   
+Hg	 Hg+2		0.0	Hg		200.59		::valence: 2                   
+Hg(+1)	 Hg2+2		0.0	Hg                                                            
+Hg(+2)	 Hg+2		0.0	Hg                                                            
+Ho	 Ho+3		0.0	Ho		164.9303	::valence: 3                   
+Ho(+2)	 Ho+2		0.0	Ho                                                            
+Ho(+3)	 Ho+3		0.0	Ho                                                            
+Ho(+4)	 Ho+4		0.0	Ho					                      
+I	 I-		0.0	I		126.9045	::valence: -1                  
+I(-0.3)  I3-		0	I                                                             
+I(-1)	 I-		0.0	I                                                             
+I(+1)	 IO-		0.0	I                                                             
+I(+5)	 IO3-		0.0	I                                                             
+I(+7)	 IO4-		0.0	I                                                             
+In	 In+3		0.0	In		114.82		::valence: 3                   
+K        K+             0.0     K               39.0983		::valence: 1                   
+Kr	 Kr,aq		0.0	Kr		83.80		::valence: 0                   
+La	 La+3		0.0	La		138.9055	::valence: 3                   
+La(2)	 La+2		0	La                                                            
+La(3)	 La+3		0	La                                                            
+Li       Li+            0.0     Li              6.9410		::valence: 1                   
+Lu	 Lu+3		0.0	Lu		174.967		::valence: 3                   
+Lu(+3)   Lu+3		0.0	Lu                                                            
+Lu(+4)   Lu+4		0.0	Lu					                      
+Mg       Mg+2           0.0     Mg              24.305		::valence: 2                   
+Mn       Mn+2           0.0     Mn              54.938		::valence: 2                   
+Mn(+2)   Mn+2           0.0     Mn                                                            
+Mn(+3)   Mn+3           0.0     Mn                                                            
+Mn(+6)   MnO4-2		0	Mn                                                            
+Mn(+7)   MnO4-		0	Mn                                                            
+Mo	 MoO4-2		0.0	Mo		95.94		::valence: 6                   
+N        NH3,aq         1.0     N               14.0067		::valence: -3                  
+N(-3)    NH3,aq         1.0     N                                                             
+N(-2)    N2H5+          0.0     N					                      
+N(0)     N2,aq          0.0     N                                                             
+N(+1)    H2N2O2,aq      0.0     N					                      
+N(+3)    NO2-           0.0     N                                                             
+N(+5)    NO3-           0.0     N                                                             
+Na       Na+            0.0     Na              22.9898		::valence: 1                   
+Nb       HNbO3,aq       0.0     Nb              92.9064		::valence: 5		      
+Nd	 Nd+3		0.0	Nd		144.24		::valence: 3                   
+Nd(+2)	 Nd+2		0.0	Nd                                                            
+Nd(+3)	 Nd+3		0.0	Nd                                                            
+Nd(+4)	 Nd+4		0.0	Nd					                      
+Ne	 Ne,aq		0.0	Ne		20.1797		::valence: 0                   
+Ni	 Ni+2		0.0	Ni		58.69		::valence: 2                   
+O        H2O            0.0     O               15.994		::valence: -2                  
+O(-2)    H2O            0.0     0.0                                                           
+O(-1)    H2O2,aq        0.0     O					                      
+O(0)     O2,aq          0.0     O                                                             
+P        HPO4-2         2.0     P               30.9738		::valence: 5                   
+P(+1)    H2PO2-         0.0     P					                      
+P(+3)    H2PO3-         0.0     P					                      
+P(5)     HPO4-2         2.0     P                                                             
+Pb       Pb+2           0.0     Pb              207.20		::valence: 2                   
+Pd	 Pd+2		0.0	Pd		106.42		::valence: 2                   
+Pm	 Pm+3		0.0	Pm		147.00		::valence: 3                   
+Pm(+2)	 Pm+2		0.0	Pm                                                            
+Pm(+3)	 Pm+3		0.0	Pm                                                            
+Pm(+4)   Pm+4		0.0	Pm					                      
+Pr	 Pr+3		0.0	Pr		140.9076	::valence: 3                   
+Pr(+2)	 Pr+2		0.0	Pr                                                            
+Pr(+3)	 Pr+3		0.0	Pr                                                            
+Pr(+4)	 Pr+4		0.0	Pr					                      
+Pt       Pt+2           0.0     Pt              195.078		::valence: 2                   
+Ra	 Ra+2		0.0	Ra		226.025		::valence: 2                   
+Rb	 Rb+		0.0	Rb		85.4678		::valence: 1                   
+Re	 ReO4-		0.0	Re		186.207		::valence: 7                   
+Rh       Rh+3           0.0     Rh              102.9055	::valence: 3                   
+Rh(+2)   Rh+2           0.0     Rh					                      
+Rh(+3)   Rh+3           0.0     Rh					                      
+Rn	 Rn,aq		0.0	Rn		222.00		::valence: 0                   
+Ru	 RuO4-2		0.0	Ru		101.07		::valence: 6                   
+Ru(+2)	 Ru+2		0.0	Ru                                                            
+Ru(+3)	 Ru+3		0.0	Ru                                                            
+Ru(+6)	 RuO4-2		0.0	Ru                                                            
+S	 SO4-2          0.0     SO4             32.066		::valence: 6                   
+S(-2)	 HS-            1.0     S                                                             
+S(+2)	 S2O3-2		0.0	S                                                             
+S(+3)	 S2O4-2		0.0	S                                                             
+S(+4)	 SO3-2		0.0	S                                                             
+S(+5)	 S2O5-2		0.0	S                                                             
+S(+6)	 SO4-2          0.0     SO4                                                           
+S(+7)	 S2O8-2		0.0	S                                                             
+S(+8)	 HSO5-		0.0	S                                                             
+Sb	 HSbO2,aq	0.0	Sb		121.75		::valence: 3		      
+Sc	 Sc+3		0.0	Sc		44.9559		::valence: 3                   
+Se	 SeO3-2		0.0	Se		78.96		::valence: 4                   
+Se(-2)	 HSe-		0.0	Se                                                            
+Se(+4)	 SeO3-2		0.0	Se                                                            
+Se(+6)	 SeO4-2		0.0	Se                                                            
+Si       SiO2,aq        0.0     SiO2            28.0855		::valence: 4                   
+Sm	 Sm+3		0.0	Sm		150.36		::valence: 3                   
+Sm(+2)	 Sm+2		0.0	Sm                                                            
+Sm(+3)	 Sm+3		0.0	Sm                                                            
+Sm(+4)	 Sm+4		0.0	Sm					                      
+Sn	 Sn+2		0.0	Sn		118.71		::valence: 2                   
+Sr       Sr+2           0.0     Sr              87.62		::valence: 2                   
+Tb	 Tb+3		0.0	Tb		158.9253	::valence: 3                   
+Tb(+2)	 Tb+2		0.0	Tb                                                            
+Tb(+3)	 Tb+3		0.0	Tb                                                            
+Tb(+4)	 Tb+4		0.0	Tb					                      
+Tc	 TcO4-		0.0	Tc		98.00		::valence: 7                   
+Th	 Th+4		0.0	Th		232.0381	::valence: 4                   
+Tl	 Tl+		0.0	Tl		204.3833	::valence: 1                   
+Tl(+1)	 Tl+		0.0	Tl                                                            
+Tl(+3)	 Tl+3		0.0	Tl                                                            
+Tm	 Tm+3		0.0	Tm		168.9342	::valence: 3                   
+Tm(+2)	 Tm+2		0.0	Tm                                                            
+Tm(+3)	 Tm+3		0.0	Tm                                                            
+Tm(+4)	 Tm+4		0.0	Tm					                      
+U	 UO2+2		0.0	U		238.0289	::valence: 6                   
+U(+3)	 U+3		0.0	U                                                             
+U(+4)	 U+4		0.0	U                                                             
+U(+5)	 UO2+		0.0	U                                                             
+U(+6)	 UO2+2		0.0	U                                                             
+V	 VO+2		0.0	V		50.9415		::valence: 4                   
+V(+2)    V+2            0.0     V					                      
+V(+3)	 V+3		0.0	V                                                             
+V(+4)	 VO+2		0.0	V                                                             
+V(+5)	 VO2+		0.0	V                                                             
+W	 WO4-2		0.0	W		183.85		::valence: 6                   
+Xe	 Xe,aq		0.0	Xe		131.29		::valence: 0                   
+Y	 Y+3		0.0	Y		88.9059		::valence: 3                   
+Yb	 Yb+3		0.0	Yb		173.04		::valence: 3                    
+Yb(+2)	 Yb+2		0.0	Yb                                                            
+Yb(+3)	 Yb+3		0.0	Yb                                                            
+Yb(+4)	 Yb+4		0.0	Yb					                      
+Zn       Zn+2           0.0     Zn              65.39		::valence: 2                   
+Zr	 ZrO+2		0.0	Zr		91.224		::valence: 4	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	      

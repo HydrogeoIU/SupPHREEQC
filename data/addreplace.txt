@@ -1,0 +1,45 @@
+# 1. Identifiers and related data, supplemented for species and phases in SOLUTION_SPECIES and PHASES datablock.
+# 2. -llnl_gamma, -co2_llnl_gamma, -log_k, -delta_h, -analytic (if included) must be spelled exactly.
+# 3. Identifiers of the species or phase in this file cannot be repeated.
+
+# 4. One record:
+#               (1) First line: Name of species or phase that the added identifiers belong to. Name must be the same as that in SUPCRT database.
+#               (2) One or multiple lines following : Begin with mark "::", then add the identifer and related data, and comments (marked with "#"). One identifier per line. 
+
+
+#***************************-mass_balance
+S2-2
+:: -mass_balance	S(-2)2	# extra identifier
+
+S2O6-2
+:: -mass_balance	S(4)2O(-2)6 
+
+S3-2
+:: -mass_balance	S(-2)3
+
+S3O6-2
+:: -mass_balance	S(4)3O(-2)6
+
+S4-2
+:: -mass_balance	S(-2)4
+
+S4O6-2
+:: -mass_balance	S(4)4O(-2)6
+
+S5-2
+:: -mass_balance	S(-2)5
+
+S5O6-2
+:: -mass_balance	S(4)5O(-2)6
+
+
+#***************************-CO2_llnl_gamma
+O2,aq
+:: -CO2_llnl_gamma
+
+H2,aq
+:: -CO2_llnl_gamma
+
+CO2,aq
+:: -CO2_llnl_gamma
+

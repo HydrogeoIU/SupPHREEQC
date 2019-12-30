@@ -1,0 +1,20 @@
+# This file is not used by the program. It is employed to only record data files' version
+
+
+1. abnormal gamma 2.0.0a.txt
+
+2. addreplace 2.0.0a.txt
+
+3. addreplace-PHREEQCDAT 1.0.0a.txt
+
+4. bdot vs TP 2.0.0a.txt
+
+5. vmcriticalpoint 4.2.0a.txt
+
+6. rxn_inorganic-1.12.2.dat
+
+7. SOLUTION_MASTER_SPECIES 2.2.0a.txt
+
+8. spronsbl-2019-12-24.dat
+
+9. kineticsScript 1.0.2.txt
