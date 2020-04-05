@@ -27,7 +27,7 @@ void FileOutput::outputTypeInformOfDatabaseFormat()
 
     file << "# Developed by Guanru Zhang, Peng Lu, Yilun Zhang, Kevin Tu, and Chen Zhu\n"
             "# All inquiries should be directed to supcrt@indiana.edu\n"
-            "# On 12/27/2019\n"
+            "# On 4/1/2019\n"
             "# Citation: Zhang GR, Lu P, Zhang YL, Tu K, Zhu C (in review) SUPPHREEQC: A program\n"
             "#    to generate customized PHREEQC thermodynamic databases from SUPCRTBL and\n"
             "#    to extend calculations to elevated pressures and temperatures. Computers &\n"
@@ -37,14 +37,14 @@ void FileOutput::outputTypeInformOfDatabaseFormat()
     switch(flag)
     {
 
-    case PHREEQCDAT100:
-    {
-        file << "# PHREEQC.DAT framework (LogKs are along Psat and molar volumes are included)." << endl;
-        file << "# Temperature(oC): 0.01 - 100." << endl;
-        file << "# Pressure is corrected up to 1000 bar by molar volumes." << endl;
 
-        break;
-    }
+
+
+
+
+
+
+
 
     case LIQVAP:
     {

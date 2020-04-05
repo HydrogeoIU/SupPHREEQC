@@ -65,9 +65,9 @@ void ScreenInput::readTypeOfDatabaseFromScreen()
 
 
     cout << "Please choose the database for PHREEQC: \n\n"
-            "\t1 -- diagenesis.dat (0.01 - 200 oC up to 1000 bar)\n"
-            "\t2 -- geothermal.dat (0.01 - 100 oC at 1 bar and 100 - 300 oC at Psat)\n"
-            "\t3 -- bl.dat (0.01 - 1000 oC at a constant P up to 5000 bar)\n"
+            "\t1 -- phreeqc.dat format  (0.01 - 200 oC up to 1000 bar)\n"
+            "\t2 -- llnl.dat format (0.01 - 100 oC at 1 bar and 100 - 300 oC at Psat)\n"
+            "\t3 -- llnl.dat format (0.01 - 1000 oC at a constant P up to 5000 bar)\n"
             << endl;
 
 
@@ -192,7 +192,7 @@ void ScreenInput::readTypeOfDatabaseFromScreen()
 
 
 
-void ScreenInput::readMinTemperatureFromScreen(double lowerBoundTemp)
+void ScreenInput::readMinTemperatureFromScreen_Psat(double lowerBoundTemp)
 {
     cout << "MIN temperature (>= 0.01 oC):" << endl;
     cout << "?";
@@ -217,7 +217,58 @@ void ScreenInput::readMinTemperatureFromScreen(double lowerBoundTemp)
 } 
 
 
-void ScreenInput::readMaxTemperatureFromScreen(double lowerBoundTemp, double upperBoundTemp)
+void ScreenInput::readMaxTemperatureFromScreen_Psat(double lowerBoundTemp, double upperBoundTemp)
+{
+    cout << "MAX temperature (<= " << upperBoundTemp << " oC):" << endl;
+    cout << "?";
+    double temperature;
+    cin >> temperature; 
+    cin.clear();
+    cin.sync();
+    cout << endl;
+
+    cout << fixed << setprecision(2);
+    while(temperature <= lowerBoundTemp || temperature > upperBoundTemp)
+    {
+        cout << "MAX temperature must be > " << lowerBoundTemp << " and <= " << upperBoundTemp << ".\n";
+        cout << "?";
+        cin >> temperature;
+        cin.clear();
+        cin.sync();
+        cout << endl;
+    } 
+
+    setMaxTemperature(temperature);
+
+} 
+
+
+void ScreenInput::readMinTemperatureFromScreen_isobaric(double lowerBoundTemp)
+{
+    cout << "MIN temperature (>= 0.01 oC):" << endl;
+    cout << "?";
+    double temperature;
+    cin >> temperature; 
+    cin.clear();
+    cin.sync();
+    cout << endl;
+
+    cout << fixed << setprecision(2);
+    while(temperature < lowerBoundTemp)
+    {
+        cout << "MIN temperature must be >= " << lowerBoundTemp << ".\n";
+        cout << "?";
+        cin >> temperature;
+        cin.clear();
+        cin.sync();
+        cout << endl;
+    } 
+    setMinTemperature(temperature) ;
+
+} 
+
+
+void ScreenInput::readMaxTemperatureFromScreen_isobaric(double lowerBoundTemp, double upperBoundTemp)
 {
     cout << "MAX temperature (<= 1000 oC):" << endl;
     cout << "?";
@@ -243,7 +294,7 @@ void ScreenInput::readMaxTemperatureFromScreen(double lowerBoundTemp, double upp
 } 
 
 
-void ScreenInput::readConstantPressure(double lowerBoundPressure, double upperBoundPressure)
+void ScreenInput::readConstantPressure_isobaric(double lowerBoundPressure, double upperBoundPressure)
 {
     cout << "Please enter a constant pressure (<= 5000 bar):" << endl;
     cout << "?";
@@ -274,40 +325,40 @@ void ScreenInput::runInstructs()
     switch(flag)
     {
 
-
-
-
-
     case LIQVAP:
     {
+        cout << "Please enter a temperature range(oC) for calculating log K\n" << endl;
 
+        readMinTemperatureFromScreen_Psat(0.01);
 
-
-
-
-
-
-        setMinTemperature(0.01);
-        setMaxTemperature(200);
+        double lowerBoundTemp = max(getMinTemperature(),100.0);
+        readMaxTemperatureFromScreen_Psat(lowerBoundTemp, 200);
 
         break;
     }
 
     case LLNLDATPSAT:
-        setMinTemperature(0.01);
-        setMaxTemperature(300);
+    {
+        cout << "Please enter a temperature range(oC) for calculating log K\n" << endl;
+
+        readMinTemperatureFromScreen_Psat(0.01);
+
+        double lowerBoundTemp = max(getMinTemperature(),100.0);
+        readMaxTemperatureFromScreen_Psat(lowerBoundTemp, 300);
+
         break;
+    }
 
     case CONSTANTPREESURE:
     {
         cout << "Please enter the T-P range (oC and bar) for calculating log K (must be in the applicable T-P range of SUPCRTBL. See Fig. 1 in Zhang et al. in review)\n" << endl;
 
-        readMinTemperatureFromScreen(0.01);
+        readMinTemperatureFromScreen_isobaric(0.01);
 
         double lowerBoundTemp = getMinTemperature();
-        readMaxTemperatureFromScreen(lowerBoundTemp, 1000);
+        readMaxTemperatureFromScreen_isobaric(lowerBoundTemp, 1000);
 
-        readConstantPressure(0.01, 5000);
+        readConstantPressure_isobaric(0.01, 5000);
 
         break;
     }

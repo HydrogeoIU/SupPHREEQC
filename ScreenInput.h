@@ -34,15 +34,23 @@ public:
 
 
     
-    void readMinTemperatureFromScreen(double lowerBoundTemp);
+    void readMinTemperatureFromScreen_Psat(double lowerBoundTemp);
 
 
     
-    void readMaxTemperatureFromScreen(double lowerBoundTemp, double upperBoundTemp);
+    void readMaxTemperatureFromScreen_Psat(double lowerBoundTemp, double upperBoundTemp);
 
 
     
-    void readConstantPressure(double lowerBoundPressure, double upperBoundPressure);
+    void readMinTemperatureFromScreen_isobaric(double lowerBoundTemp);
+
+
+    
+    void readMaxTemperatureFromScreen_isobaric(double lowerBoundTemp, double upperBoundTemp);
+
+
+    
+    void readConstantPressure_isobaric(double lowerBoundPressure, double upperBoundPressure);
 
 
     
