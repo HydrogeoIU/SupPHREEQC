@@ -10,55 +10,55 @@ using namespace std;
 # include "pwl_interp_2d_scattered.hpp"
 # include "r8lib.hpp"
 
-
+//****************************************************************************80
 
 int diaedg ( double x0, double y0, double x1, double y1, double x2, double y2,
   double x3, double y3 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    DIAEDG chooses a diagonal edge.
+//
+//  Discussion:
+//
+//    The routine determines whether 0--2 or 1--3 is the diagonal edge
+//    that should be chosen, based on the circumcircle criterion, where
+//    (X0,Y0), (X1,Y1), (X2,Y2), (X3,Y3) are the vertices of a simple
+//    quadrilateral in counterclockwise order.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    28 August 2003
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Barry Joe.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Barry Joe,
+//    GEOMPACK - a software package for the generation of meshes
+//    using geometric algorithms,
+//    Advances in Engineering Software,
+//    Volume 13, pages 325-331, 1991.
+//
+//  Parameters:
+//
+//    Input, double X0, Y0, X1, Y1, X2, Y2, X3, Y3, the coordinates of the
+//    vertices of a quadrilateral, given in counter clockwise order.
+//
+//    Output, int DIAEDG, chooses a diagonal:
+//    +1, if diagonal edge 02 is chosen;
+//    -1, if diagonal edge 13 is chosen;
+//     0, if the four vertices are cocircular.
+//
 {
   double ca;
   double cb;
@@ -129,89 +129,89 @@ int diaedg ( double x0, double y0, double x1, double y1, double x2, double y2,
 
   return value;
 }
-
+//****************************************************************************80
 
 void i4mat_transpose_print ( int m, int n, int a[], string title )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    I4MAT_TRANSPOSE_PRINT prints an I4MAT, transposed.
+//
+//  Discussion:
+//
+//    An I4MAT is an MxN array of I4's, stored by (I,J) -> [I+J*M].
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    31 January 2005
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int M, the number of rows in A.
+//
+//    Input, int N, the number of columns in A.
+//
+//    Input, int A[M*N], the M by N matrix.
+//
+//    Input, string TITLE, a title.
+//
 {
   i4mat_transpose_print_some ( m, n, a, 1, 1, m, n, title );
 
   return;
 }
-
+//****************************************************************************80
 
 void i4mat_transpose_print_some ( int m, int n, int a[], int ilo, int jlo,
   int ihi, int jhi, string title )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    I4MAT_TRANSPOSE_PRINT_SOME prints some of an I4MAT, transposed.
+//
+//  Discussion:
+//
+//    An I4MAT is an MxN array of I4's, stored by (I,J) -> [I+J*M].
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    20 August 2010
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int M, the number of rows of the matrix.
+//    M must be positive.
+//
+//    Input, int N, the number of columns of the matrix.
+//    N must be positive.
+//
+//    Input, int A[M*N], the matrix.
+//
+//    Input, int ILO, JLO, IHI, JHI, designate the first row and
+//    column, and the last row and column to be printed.
+//
+//    Input, string TITLE, a title.
+//
 {
 # define INCX 10
 
@@ -231,9 +231,9 @@ void i4mat_transpose_print_some ( int m, int n, int a[], int ilo, int jlo,
     cout << "  (None)\n";
     return;
   }
-
-
-
+//
+//  Print the columns of the matrix, in strips of INCX.
+//
   for ( i2lo = ilo; i2lo <= ihi; i2lo = i2lo + INCX )
   {
     i2hi = i2lo + INCX - 1;
@@ -241,11 +241,11 @@ void i4mat_transpose_print_some ( int m, int n, int a[], int ilo, int jlo,
     i2hi = i4_min ( i2hi, ihi );
 
     cout << "\n";
-
-
-
-
-
+//
+//  For each row I in the current range...
+//
+//  Write the header.
+//
     cout << "  Row: ";
     for ( i = i2lo; i <= i2hi; i++ )
     {
@@ -254,17 +254,17 @@ void i4mat_transpose_print_some ( int m, int n, int a[], int ilo, int jlo,
     cout << "\n";
     cout << "  Col\n";
     cout << "\n";
-
-
-
+//
+//  Determine the range of the rows in this strip.
+//
     j2lo = i4_max ( jlo, 1 );
     j2hi = i4_min ( jhi, n );
 
     for ( j = j2lo; j <= j2hi; j++ )
     {
-
-
-
+//
+//  Print out (up to INCX) entries in column J, that lie in the current strip.
+//
       cout << setw(5) << j - 1 << ":";
       for ( i = i2lo; i <= i2hi; i++ )
       {
@@ -277,113 +277,113 @@ void i4mat_transpose_print_some ( int m, int n, int a[], int ilo, int jlo,
   return;
 # undef INCX
 }
-
+//****************************************************************************80
 
 void i4vec_heap_d ( int n, int a[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    I4VEC_HEAP_D reorders an I4VEC into a descending heap.
+//
+//  Discussion:
+//
+//    An I4VEC is a vector of I4's.
+//
+//    A heap is an array A with the property that, for every index J,
+//    A[J] >= A[2*J+1] and A[J] >= A[2*J+2], (as long as the indices
+//    2*J+1 and 2*J+2 are legal).
+//
+//  Diagram:
+//
+//                  A(0)
+//
+//            A(1)         A(2)
+//
+//      A(3)       A(4)  A(5) A(6)
+//
+//    A(7) A(8)  A(9) A(10)
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    30 April 1999
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Reference:
+//
+//    Albert Nijenhuis, Herbert Wilf,
+//    Combinatorial Algorithms,
+//    Academic Press, 1978, second edition,
+//    ISBN 0-12-519260-6.
+//
+//  Parameters:
+//
+//    Input, int N, the size of the input array.
+//
+//    Input/output, int A[N].
+//    On input, an unsorted array.
+//    On output, the array has been reordered into a heap.
+//
 {
   int i;
   int ifree;
   int key;
   int m;
-
-
-
+//
+//  Only nodes (N/2)-1 down to 0 can be "parent" nodes.
+//
   for ( i = ( n / 2 ) - 1; 0 <= i; i-- )
   {
-
-
-
-
+//
+//  Copy the value out of the parent node.
+//  Position IFREE is now "open".
+//
     key = a[i];
     ifree = i;
 
     for ( ; ; )
     {
-
-
-
-
+//
+//  Positions 2*IFREE + 1 and 2*IFREE + 2 are the descendants of position
+//  IFREE.  (One or both may not exist because they equal or exceed N.)
+//
       m = 2 * ifree + 1;
-
-
-
+//
+//  Does the first position exist?
+//
       if ( n <= m )
       {
         break;
       }
       else
       {
-
-
-
+//
+//  Does the second position exist?
+//
         if ( m + 1 < n )
         {
-
-
-
-
+//
+//  If both positions exist, take the larger of the two values,
+//  and update M if necessary.
+//
           if ( a[m] < a[m+1] )
           {
             m = m + 1;
           }
         }
-
-
-
-
-
+//
+//  If the large descendant is larger than KEY, move it up,
+//  and update IFREE, the location of the free position, and
+//  consider the descendants of THIS position.
+//
         if ( key < a[m] )
         {
           a[ifree] = a[m];
@@ -395,50 +395,50 @@ void i4vec_heap_d ( int n, int a[] )
         }
       }
     }
-
-
-
-
+//
+//  When you have stopped shifting items up, return the item you
+//  pulled out back to the heap.
+//
     a[ifree] = key;
   }
 
   return;
 }
-
+//****************************************************************************80
 
 int i4vec_min ( int n, int a[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    I4VEC_MIN returns the value of the minimum element in an I4VEC.
+//
+//  Discussion:
+//
+//    An I4VEC is a vector of I4's.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    17 May 2003
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int N, the number of entries in the array.
+//
+//    Input, int A[N], the array to be checked.
+//
+//    Output, int I4VEC_MIN, the value of the minimum element.  This
+//    is set to 0 if N <= 0.
+//
 {
   int i;
   int value;
@@ -459,47 +459,47 @@ int i4vec_min ( int n, int a[] )
   }
   return value;
 }
-
+//****************************************************************************80
 
 void i4vec_sort_heap_a ( int n, int a[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    I4VEC_SORT_HEAP_A ascending sorts an I4VEC using heap sort.
+//
+//  Discussion:
+//
+//    An I4VEC is a vector of I4's.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    30 April 1999
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Reference:
+//
+//    Albert Nijenhuis, Herbert Wilf,
+//    Combinatorial Algorithms,
+//    Academic Press, 1978, second edition,
+//    ISBN 0-12-519260-6.
+//
+//  Parameters:
+//
+//    Input, int N, the number of entries in the array.
+//
+//    Input/output, int A[N].
+//    On input, the array to be sorted;
+//    On output, the array has been sorted.
+//
 {
   int n1;
   int temp;
@@ -508,72 +508,72 @@ void i4vec_sort_heap_a ( int n, int a[] )
   {
     return;
   }
-
-
-
+//
+//  1: Put A into descending heap form.
+//
   i4vec_heap_d ( n, a );
-
-
-
-
-
-
+//
+//  2: Sort A.
+//
+//  The largest object in the heap is in A[0].
+//  Move it to position A[N-1].
+//
   temp = a[0];
   a[0] = a[n-1];
   a[n-1] = temp;
-
-
-
+//
+//  Consider the diminished heap of size N1.
+//
   for ( n1 = n-1; 2 <= n1; n1-- )
   {
-
-
-
+//
+//  Restore the heap structure of the initial N1 entries of A.
+//
     i4vec_heap_d ( n1, a );
-
-
-
+//
+//  Take the largest object from A[0] and move it to A[N1-1].
+//
     temp = a[0];
     a[0] = a[n1-1];
     a[n1-1] = temp;
   }
   return;
 }
-
+//****************************************************************************80
 
 int i4vec_sorted_unique ( int n, int a[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    I4VEC_SORTED_UNIQUE finds the unique elements in a sorted I4VEC.
+//
+//  Discussion:
+//
+//    An I4VEC is a vector of I4's.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    24 August 2006
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int N, the number of elements in A.
+//
+//    Input/output, int A[N].  On input, the sorted array.  On output, the 
+//    unique elements in A.
+//
+//    Output, int I4VEC_SORTED_UNIQUE, the number of unique elements in A.
+//
 {
   int i;
   int unique_num;
@@ -598,56 +598,56 @@ int i4vec_sorted_unique ( int n, int a[] )
 
   return unique_num;
 }
-
+//****************************************************************************80
 
 int lrline ( double xu, double yu, double xv1, double yv1, double xv2,
   double yv2, double dv )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    LRLINE determines where a point lies in relation to a directed line.
+//
+//  Discussion:
+//
+//    LRLINE determines whether a point is to the left of, right of,
+//    or on a directed line parallel to a line through given points.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    28 August 2003
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Barry Joe.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Barry Joe,
+//    GEOMPACK - a software package for the generation of meshes
+//    using geometric algorithms,
+//    Advances in Engineering Software,
+//    Volume 13, pages 325-331, 1991.
+//
+//  Parameters:
+//
+//    Input, double XU, YU, XV1, YV1, XV2, YV2, are vertex coordinates; the
+//    directed line is parallel to and at signed distance DV to the left of
+//    the directed line from (XV1,YV1) to (XV2,YV2); (XU,YU) is the vertex for
+//    which the position relative to the directed line is to be determined.
+//
+//    Input, double DV, the signed distance, positive for left.
+//
+//    Output, int LRLINE, is +1, 0, or -1 depending on whether (XU,YU) is
+//    to the right of, on, or left of the directed line.  LRLINE is 0 if
+//    the line degenerates to a point.
+//
 {
   double dx;
   double dxu;
@@ -685,46 +685,46 @@ int lrline ( double xu, double yu, double xv1, double yv1, double xv2,
 
   return value;
 }
-
+//****************************************************************************80
 
 int perm_check2 ( int n, int p[], int base )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    PERM_CHECK2 checks that a vector represents a permutation.
+//
+//  Discussion:
+//
+//    The routine verifies that each of the integers from 1
+//    to N occurs among the N entries of the permutation.
+//
+//    Set the input quantity BASE to 0, if P is a 0-based permutation,
+//    or to 1 if P is a 1-based permutation.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    18 October 2012
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int N, the number of entries.
+//
+//    Input, int P[N], the permutation, in standard index form.
+//
+//    Input, int BASE, the index base.
+//
+//    Output, int PERM_CHECK, is 1 if the array is NOT a permutation.
+//
 {
   int error;
   int ifind;
@@ -756,35 +756,35 @@ int perm_check2 ( int n, int p[], int base )
 
   return 0;
 }
-
+//****************************************************************************80
 
 void perm_inverse ( int n, int p[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    PERM_INVERSE inverts a permutation "in place".
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    28 March 2009
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int N, the number of objects being permuted.
+//
+//    Input/output, int P[N], the permutation, in standard index form.
+//    On output, P describes the inverse permutation
+//
 {
   int base;
   int error;
@@ -802,9 +802,9 @@ void perm_inverse ( int n, int p[] )
     cerr << "  Input value of N = " << n << "\n";
     exit ( 1 );
   }
-
-
-
+//
+//  Find the least value, and shift data so it begins at 1.
+//
   p_min = i4vec_min ( n, p );
   base = 1;
 
@@ -812,9 +812,9 @@ void perm_inverse ( int n, int p[] )
   {
     p[i] = p[i] - p_min + base;
   }
-
-
-
+//
+//  Check the permutation.
+//
   error = perm_check2 ( n, p, base );
 
   if ( error )
@@ -867,9 +867,9 @@ void perm_inverse ( int n, int p[] )
       }
     }
   }
-
-
-
+//
+//  Now we can restore the permutation.
+//
   for ( i = 0; i < n; i++ )
   {
     p[i] = p[i] + p_min - base;
@@ -877,49 +877,49 @@ void perm_inverse ( int n, int p[] )
 
   return;
 }
-
+//****************************************************************************80
 
 double *pwl_interp_2d_scattered_value ( int nd, double xyd[], double zd[], 
   int t_num, int t[], int t_neighbor[], int ni, double xyi[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    PWL_INTERP_2D_SCATTERED_VALUE evaluates a 2d interpolant of scattered data
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license. 
+//
+//  Modified:
+//
+//    25 October 2012
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int ND, the number of data points.
+//
+//    Input, double XYD[2*ND], the data point coordinates.
+//
+//    Input, double ZD[ND], the data values.
+//
+//    Input, int T_NUM, the number of triangles.
+//
+//    Input, int T[3*T_NUM], the triangle information.
+//
+//    Input, int T_NEIGHBOR[3*T_NUM], the triangle neighbors.
+//
+//    Input, int NI, the number of interpolation points.
+//
+//    Input, double XYI[2*NI], the interpolation point coordinates.
+//
+//    Output, double PWL_INTERP_2D_SCATTERED_VALUE[NI], the interpolated values.
+//
 {
   double alpha;
   double beta;
@@ -948,66 +948,66 @@ double *pwl_interp_2d_scattered_value ( int nd, double xyd[], double zd[],
   }
   return zi;
 }
-
+//****************************************************************************80
 
 int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
   int triangle_node[], int triangle_neighbor[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    R8TRIS2 constructs a Delaunay triangulation of 2D vertices.
+//
+//  Discussion:
+//
+//    The routine constructs the Delaunay triangulation of a set of 2D vertices
+//    using an incremental approach and diagonal edge swaps.  Vertices are
+//    first sorted in lexicographically increasing (X,Y) order, and
+//    then are inserted one at a time from outside the convex hull.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    15 January 2004
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Barry Joe.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Barry Joe,
+//    GEOMPACK - a software package for the generation of meshes
+//    using geometric algorithms,
+//    Advances in Engineering Software,
+//    Volume 13, pages 325-331, 1991.
+//
+//  Parameters:
+//
+//    Input, int NODE_NUM, the number of nodes.
+//
+//    Input, double NODE_XY[2*NODE_NUM], the coordinates of the nodes.
+//
+//    Output, int &TRIANGLE_NUM, the number of triangles in the triangulation;
+//    TRIANGLE_NUM is equal to 2*node_num - NB - 2, where NB is the number
+//    of boundary vertices.
+//
+//    Output, int TRIANGLE_NODE[3*TRIANGLE_NUM], the nodes that make up each
+//    triangle.  The elements are indices of NODE_XY.  The vertices of the
+//    triangles are in counterclockwise order.
+//
+//    Output, int TRIANGLE_NEIGHBOR[3*TRIANGLE_NUM], the triangle neighbor list.
+//    Positive elements are indices of TIL; negative elements are used for links
+//    of a counter clockwise linked list of boundary edges; LINK = -(3*I + J-1)
+//    where I, J = triangle, edge index; TRIANGLE_NEIGHBOR[I,J] refers to
+//    the neighbor along edge from vertex J to J+1 (mod 3).
+//
+//    Output, int R8TRIS2, is 0 for no error.
 {
   int base;
   double cmax;
@@ -1035,17 +1035,17 @@ int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
   stack = new int[node_num];
 
   tol = 100.0 * r8_epsilon ( );
-
-
-
+//
+//  Sort the vertices by increasing (x,y).
+//
   base = 0;
 
   indx = r82row_sort_heap_index_a ( node_num, node_xy );
 
   r82row_permute ( node_num, indx, node_xy );
-
-
-
+//
+//  Make sure that the nodes are "reasonably" distinct.
+//
   m1 = 1;
 
   for ( i = 2; i <= node_num; i++ )
@@ -1084,10 +1084,10 @@ int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
     }
 
   }
-
-
-
-
+//
+//  Starting from nodes M1 and M2, search for a third point M that
+//  makes a "healthy" triangle (M1,M2,M)
+//
   m1 = 1;
   m2 = 2;
   j = 3;
@@ -1116,10 +1116,10 @@ int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
     j = j + 1;
 
   }
-
-
-
-
+//
+//  Set up the triangle information for (M1,M2,M), and for any other
+//  triangles you created because nodes were collinear with M1, M2.
+//
   triangle_num = j - 2;
 
   if ( lr == -1 )
@@ -1172,11 +1172,11 @@ int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
     ltri = 1;
 
   }
-
-
-
-
-
+//
+//  Insert the vertices one at a time from outside the convex hull,
+//  determine visible boundary edges, and apply diagonal edge swaps until
+//  Delaunay triangulation of vertices (so far) is obtained.
+//
   top = 0;
 
   for ( i = j+1; i <= node_num; i++ )
@@ -1280,9 +1280,9 @@ int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
     }
 
   }
-
-
-
+//
+//  Undo the sorting.
+//
   for ( i = 0; i < 3; i++ )
   {
     for ( j = 0; j < triangle_num; j++ )
@@ -1300,78 +1300,78 @@ int r8tris2 ( int node_num, double node_xy[], int &triangle_num,
 
   return 0;
 }
-
+//****************************************************************************80
 
 int swapec ( int i, int &top, int &btri, int &bedg, int node_num,
   double node_xy[], int triangle_num, int triangle_node[],
   int triangle_neighbor[], int stack[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    SWAPEC swaps diagonal edges until all triangles are Delaunay.
+//
+//  Discussion:
+//
+//    The routine swaps diagonal edges in a 2D triangulation, based on
+//    the empty circumcircle criterion, until all triangles are Delaunay,
+//    given that I is the index of the new vertex added to the triangulation.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    03 September 2003
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Barry Joe.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Barry Joe,
+//    GEOMPACK - a software package for the generation of meshes
+//    using geometric algorithms,
+//    Advances in Engineering Software,
+//    Volume 13, pages 325-331, 1991.
+//
+//  Parameters:
+//
+//    Input, int I, the index of the new vertex.
+//
+//    Input/output, int &TOP, the index of the top of the stack.
+//    On output, TOP is zero.
+//
+//    Input/output, int &BTRI, &BEDG; on input, if positive, are the
+//    triangle and edge indices of a boundary edge whose updated indices
+//    must be recorded.  On output, these may be updated because of swaps.
+//
+//    Input, int NODE_NUM, the number of nodes.
+//
+//    Input, double NODE_XY[2*NODE_NUM], the coordinates of the nodes.
+//
+//    Input, int TRIANGLE_NUM, the number of triangles.
+//
+//    Input/output, int TRIANGLE_NODE[3*TRIANGLE_NUM], the triangle incidence
+//    list.  May be updated on output because of swaps.
+//
+//    Input/output, int TRIANGLE_NEIGHBOR[3*TRIANGLE_NUM], the triangle neighbor
+//    list; negative values are used for links of the counter-clockwise linked
+//    list of boundary edges;  May be updated on output because of swaps.
+//
+//      LINK = -(3*I + J-1) where I, J = triangle, edge index.
+//
+//    Workspace, int STACK[MAXST]; on input, entries 1 through TOP
+//    contain the indices of initial triangles (involving vertex I)
+//    put in stack; the edges opposite I should be in interior;  entries
+//    TOP+1 through MAXST are used as a stack.
+//
+//    Output, int SWAPEC, is set to 8 for abnormal return.
+//
 {
   int a;
   int b;
@@ -1392,10 +1392,10 @@ int swapec ( int i, int &top, int &btri, int &bedg, int node_num,
   int u;
   double x;
   double y;
-
-
-
-
+//
+//  Determine whether triangles in stack are Delaunay, and swap
+//  diagonal edge of convex quadrilateral if not.
+//
   x = node_xy[2*(i-1)+0];
   y = node_xy[2*(i-1)+1];
 
@@ -1583,58 +1583,58 @@ int swapec ( int i, int &top, int &btri, int &bedg, int node_num,
 
   return 0;
 }
-
+//****************************************************************************80
 
 void triangulation_order3_print ( int node_num, int triangle_num,
   double node_xy[], int triangle_node[], int triangle_neighbor[] )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    TRIANGULATION_ORDER3_PRINT prints information defining a triangulation.
+//
+//  Discussion:
+//
+//    Triangulations created by R8TRIS2 include extra information encoded
+//    in the negative values of TRIANGLE_NEIGHBOR.
+//
+//    Because some of the nodes counted in NODE_NUM may not actually be
+//    used in the triangulation, I needed to compute the true number
+//    of vertices.  I added this calculation on 13 October 2001.
+//
+//    Ernest Fasse pointed out an error in the indexing of VERTEX_LIST,
+//    which was corrected on 19 February 2004.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    11 June 2005
+//
+//  Author:
+//
+//    John Burkardt
+//
+//  Parameters:
+//
+//    Input, int NODE_NUM, the number of nodes.
+//
+//    Input, int TRIANGLE_NUM, the number of triangles.
+//
+//    Input, double NODE_XY[2*NODE_NUM], the coordinates of the nodes.
+//
+//    Input, int TRIANGLE_NODE[3*TRIANGLE_NUM], the nodes that make up
+//    the triangles.
+//
+//    Input, int TRIANGLE_NEIGHBOR[3*TRIANGLE_NUM], the triangle neighbors
+//    on each side.  If there is no triangle neighbor on a particular side,
+//    the value of TRIANGLE_NEIGHBOR should be negative.  If the
+//    triangulation data was created by R8TRIS2, then there is more
+//    information encoded in the negative values.
+//
 {
 # define DIM_NUM 2
 
@@ -1678,9 +1678,9 @@ void triangulation_order3_print ( int node_num, int triangle_num,
 
   i4mat_transpose_print ( 3, triangle_num, triangle_neighbor,
     "  Triangle neighbors" );
-
-
-
+//
+//  Determine VERTEX_NUM, the number of vertices.
+//
   vertex_list = new int[3*triangle_num];
 
   k = 0;
@@ -1698,9 +1698,9 @@ void triangulation_order3_print ( int node_num, int triangle_num,
   vertex_num = i4vec_sorted_unique ( 3*triangle_num, vertex_list );
 
   delete [] vertex_list;
-
-
-
+//
+//  Determine the number of boundary points.
+//
   boundary_num = 2 * vertex_num - triangle_num - 2;
 
   cout << "\n";
@@ -1758,7 +1758,7 @@ void triangulation_order3_print ( int node_num, int triangle_num,
   return;
 # undef DIM_NUM
 }
-
+//****************************************************************************80
 
 void triangulation_search_delaunay ( int node_num, double node_xy[],
   int triangle_order, int triangle_num, int triangle_node[],
@@ -1766,89 +1766,89 @@ void triangulation_search_delaunay ( int node_num, double node_xy[],
   double &alpha, double &beta, double &gamma, int &edge,
   int &step_num )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    TRIANGULATION_SEARCH_DELAUNAY searches a triangulation for a point.
+//
+//  Discussion:
+//
+//    The algorithm "walks" from one triangle to its neighboring triangle,
+//    and so on, until a triangle is found containing point P, or P is found
+//    to be outside the convex hull.
+//
+//    The algorithm computes the barycentric coordinates of the point with
+//    respect to the current triangle.  If all three quantities are positive,
+//    the point is contained in the triangle.  If the I-th coordinate is
+//    negative, then (X,Y) lies on the far side of edge I, which is opposite
+//    from vertex I.  This gives a hint as to where to search next.
+//
+//    For a Delaunay triangulation, the search is guaranteed to terminate.
+//    For other triangulations, a cycle may occur.
+//
+//    Note the surprising fact that, even for a Delaunay triangulation of
+//    a set of nodes, the nearest point to (X,Y) need not be one of the
+//    vertices of the triangle containing (X,Y).
+//
+//    The code can be called for triangulations of any order, but only
+//    the first three nodes in each triangle are considered.  Thus, if
+//    higher order triangles are used, and the extra nodes are intended
+//    to give the triangle a polygonal shape, these will have no effect,
+//    and the results obtained here might be misleading.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    25 October 2012
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Barry Joe.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Barry Joe,
+//    GEOMPACK - a software package for the generation of meshes
+//    using geometric algorithms,
+//    Advances in Engineering Software,
+//    Volume 13, pages 325-331, 1991.
+//
+//  Parameters:
+//
+//    Input, int NODE_NUM, the number of nodes.
+//
+//    Input, double NODE_XY[2*NODE_NUM], the coordinates of the nodes.
+//
+//    Input, int TRIANGLE_ORDER, the order of the triangles.
+//
+//    Input, int TRIANGLE_NUM, the number of triangles in the triangulation.
+//
+//    Input, int TRIANGLE_NODE[TRIANGLE_ORDER*TRIANGLE_NUM],
+//    the nodes of each triangle.
+//
+//    Input, int TRIANGLE_NEIGHBOR[3*TRIANGLE_NUM], the triangle neighbor list.
+//
+//    Input, double P[2], the coordinates of a point.
+//
+//    Output, int &TRIANGLE_INDEX, the index of the triangle where the search ended.
+//    If a cycle occurred, then TRIANGLE_INDEX = -1.
+//
+//    Output, double &ALPHA, &BETA, &GAMMA, the barycentric coordinates
+//    of the point with respect to triangle TRIANGLE_INDEX.
+//
+//    Output, int &EDGE, indicates the position of the point (X,Y) in
+//    triangle TRIANGLE:
+//    0, the interior or boundary of the triangle;
+//    -1, outside the convex hull of the triangulation, past edge 1;
+//    -2, outside the convex hull of the triangulation, past edge 2;
+//    -3, outside the convex hull of the triangulation, past edge 3.
+//
+//    Output, int &STEP_NUM, the number of steps.
 {
   int a;
   int b;
@@ -1886,16 +1886,16 @@ void triangulation_search_delaunay ( int node_num, double node_xy[],
       cerr << "  Current triangle is " << triangle_index << "\n";
       exit ( 1 );
     }
-
-
-
+//
+//  Get the vertices of triangle TRIANGLE.
+//
     a = triangle_node[0+triangle_index*triangle_order];
     b = triangle_node[1+triangle_index*triangle_order];
     c = triangle_node[2+triangle_index*triangle_order];
-
-
-
-
+//
+//  Using vertex C as a base, compute the distances to vertices A and B,
+//  and the point (X,Y).
+//
     dxa = node_xy[0+a*2] - node_xy[0+c*2];
     dya = node_xy[1+a*2] - node_xy[1+c*2];
 
@@ -1906,33 +1906,33 @@ void triangulation_search_delaunay ( int node_num, double node_xy[],
     dyp = p[1]           - node_xy[1+c*2];
 
     det = dxa * dyb - dya * dxb;
-
-
-
-
+//
+//  Compute the barycentric coordinates of the point (X,Y) with respect
+//  to this triangle.
+//
     alpha = ( dxp * dyb - dyp * dxb ) / det;
     beta =  ( dxa * dyp - dya * dxp ) / det;
     gamma = 1.0 - alpha - beta;
-
-
-
-
+//
+//  If the barycentric coordinates are all positive, then the point
+//  is inside the triangle and we're done.
+//
     if ( 0.0 <= alpha &&
          0.0 <= beta  &&
          0.0 <= gamma )
     {
       break;
     }
-
-
-
-
-
-
-
-
-
-
+//
+//  At least one barycentric coordinate is negative.
+//
+//  If there is a negative barycentric coordinate for which there exists
+//  an opposing triangle neighbor closer to the point, move to that triangle.
+//
+//  (Two coordinates could be negative, in which case we could go for the
+//  most negative one, or the most negative one normalized by the actual
+//  distance it represents).
+//
     if ( alpha < 0.0 && 0 <= triangle_neighbor[1+triangle_index*3] )
     {
       triangle_index = triangle_neighbor[1+triangle_index*3];
@@ -1948,12 +1948,12 @@ void triangulation_search_delaunay ( int node_num, double node_xy[],
       triangle_index = triangle_neighbor[0+triangle_index*3];
       continue;
     }
-
-
-
-
-
-
+//
+//  All negative barycentric coordinates correspond to vertices opposite
+//  sides on the convex hull.
+//
+//  Note the edge and exit.
+//
     if ( alpha < 0.0 )
     {
       edge = -2;
@@ -1982,76 +1982,76 @@ void triangulation_search_delaunay ( int node_num, double node_xy[],
 
   return;
 }
-
+//****************************************************************************80
 
 void vbedg ( double x, double y, int node_num, double node_xy[],
   int triangle_num, int triangle_node[], int triangle_neighbor[], int &ltri,
   int &ledg, int &rtri, int &redg )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//****************************************************************************80
+//
+//  Purpose:
+//
+//    VBEDG determines which boundary edges are visible to a point.
+//
+//  Discussion:
+//
+//    The point (X,Y) is assumed to be outside the convex hull of the
+//    region covered by the 2D triangulation.
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    30 September 2008
+//
+//  Author:
+//
+//    Original FORTRAN77 version by Barry Joe.
+//    C++ version by John Burkardt.
+//
+//  Reference:
+//
+//    Barry Joe,
+//    GEOMPACK - a software package for the generation of meshes
+//    using geometric algorithms,
+//    Advances in Engineering Software,
+//    Volume 13, pages 325-331, 1991.
+//
+//  Parameters:
+//
+//    Input, double X, Y, the coordinates of a point outside the convex hull
+//    of the current triangulation.
+//
+//    Input, int NODE_NUM, the number of nodes.
+//
+//    Input, double NODE_XY[2*NODE_NUM], the coordinates of the nodes.
+//
+//    Input, int TRIANGLE_NUM, the number of triangles.
+//
+//    Input, int TRIANGLE_NODE[3*TRIANGLE_NUM], the triangle incidence list.
+//
+//    Input, int TRIANGLE_NEIGHBOR[3*TRIANGLE_NUM], the triangle neighbor list;
+//    negative values are used for links of a counter clockwise linked list
+//    of boundary edges;
+//      LINK = -(3*I + J-1) where I, J = triangle, edge index.
+//
+//    Input/output, int &LTRI, &LEDG.  If LTRI != 0 then these values are
+//    assumed to be already computed and are not changed, else they are updated.
+//    On output, LTRI is the index of boundary triangle to the left of the
+//    leftmost boundary triangle visible from (X,Y), and LEDG is the boundary
+//    edge of triangle LTRI to the left of the leftmost boundary edge visible
+//    from (X,Y).  1 <= LEDG <= 3.
+//
+//    Input/output, int &RTRI.  On input, the index of the boundary triangle
+//    to begin the search at.  On output, the index of the rightmost boundary
+//    triangle visible from (X,Y).
+//
+//    Input/output, int &REDG, the edge of triangle RTRI that is visible
+//    from (X,Y).  1 <= REDG <= 3.
+//
 {
   int a;
   double ax;
@@ -2064,10 +2064,10 @@ void vbedg ( double x, double y, int node_num, double node_xy[],
   int l;
   int lr;
   int t;
-
-
-
-
+//
+//  Find the rightmost visible boundary edge using links, then possibly
+//  leftmost visible boundary edge using triangle neighbor information.
+//
   if ( ltri == 0 )
   {
     done = false;

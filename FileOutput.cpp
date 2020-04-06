@@ -58,7 +58,7 @@ void FileOutput::outputTypeInformOfDatabaseFormat()
     case LLNLDATPSAT:
     {
         file << "# LLNL.DAT framework (LogKs are along Psat)." << endl;
-        file << "# Temperature(oC): 0.01 - 300" << endl;
+        file << "# Temperature(oC): " << ScreenInput::getMinTemperature() << " - " << ScreenInput::getMaxTemperature() << "." << endl;
 
         break;
     }
